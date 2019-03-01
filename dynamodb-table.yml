@@ -1,0 +1,29 @@
+Resources:
+  employeeDetail:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      TableName: employee
+      AttributeDefinitions:
+        - AttributeName: employeeId
+          AttributeType: S
+      KeySchema:
+        - AttributeName: employeeId
+          KeyType: HASH
+      # Set the capacity based on the stage
+      ProvisionedThroughput:
+        ReadCapacityUnits: 2
+        WriteCapacityUnits: 2
+#  user_registration:
+#     Type: AWS::DynamoDB::Table
+#     Properties:
+#       TableName: user_registration
+#       AttributeDefinitions:
+#         - AttributeName: userEmail
+#           AttributeType: S
+#       KeySchema:
+#         - AttributeName: userEmail
+#           KeyType: HASH
+#       # Set the capacity based on the stage
+#       ProvisionedThroughput:
+#         ReadCapacityUnits: 2
+#         WriteCapacityUnits: 2
