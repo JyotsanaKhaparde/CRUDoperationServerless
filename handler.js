@@ -170,3 +170,20 @@ module.exports.deleteItem = async (event) => {
   console.log("Response :" + JSON.stringify(response));
   return response;
 };
+
+
+module.exports.selectSpecificEmployee = async (event) => {
+  var parseParameter = JSON.parse(event.body);
+  console.log("ecent id is :", parseParameter.employeeId);
+  var requestObject = {
+    employeeId: parseParameter.employeeId
+  };
+  var employResult = await models.getSpecificEmployee(requestObject);
+  console.log("182----handler----employeresult :", employResult);
+
+  var response = {
+    statusCode: 200,
+    body: JSON.stringify(employResult)
+  }
+  return response;
+}

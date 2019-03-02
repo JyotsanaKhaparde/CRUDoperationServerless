@@ -83,50 +83,58 @@ functions:
     events:
       - http:
           path: employee/updateName  
-          method: post
+          method: put
           cors: true 
   updateEmail:
     handler: handler.updateEmail
     events:
       - http:
           path: employee/updateEmail  
-          method: post
+          method: put
           cors: true
   updateCity:
     handler: handler.updateCity
     events:
       - http:
           path: employee/updateCity  
-          method: post
+          method: put
           cors: true
   updateSalary:
     handler: handler.updateSalary
     events:
       - http:
           path: employee/updateSalary  
-          method: post
+          method: put
           cors: true 
   updateProfile:
     handler: handler.updateProfile
     events:
       - http:
           path: employee/updateProfile  
-          method: post
+          method: put
           cors: true
   selectEmployee:
     handler: handler.selectEmployee
     events:
       - http:
           path: employee/selectEmployee  
-          method: post
+          method: get
           cors: true
   deleteItem:
     handler: handler.deleteItem
     events:
       - http:
           path: employee/deleteItem  
+          method: delete
+          cors: true
+  selectSpecificEmployee:
+    handler: handler.selectSpecificEmployee
+    events:
+      - http:
+          path: employee/selectSpecificEmployee  
           method: post
-          cors: true   
+          cors: true
+
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events

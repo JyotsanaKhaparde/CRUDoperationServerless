@@ -235,7 +235,7 @@ userModel.prototype.selectAllEmploy = () => {
             }
             else {
                 console.log(JSON.stringify(data));
-                resolve(data);
+                resolve(data.Items);
             }
         });
     });
@@ -262,6 +262,30 @@ userModel.prototype.deleteItem = (requestObject) => {
             }
             else {
                 console.log(JSON.stringify(data));
+                resolve(data);
+            }
+        });
+    });
+};
+
+
+userModel.prototype.getSpecificEmployee = (requestObject) => {
+    return new Promise(function (resolve, reject) {
+        var table = "employee";
+        var params = {
+            TableName: table,
+            Key: {
+                "employeeId": {
+                    S: requestObject.employeeId
+                },
+            }
+        };
+        console.log("Getting user_details...");
+        dynamodb.getItem(params, function (err, data) {
+            if (err) {
+                console.log("Error:" + err);
+                reject(err);
+            } else {
                 resolve(data);
             }
         });
