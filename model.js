@@ -235,7 +235,7 @@ userModel.prototype.selectAllEmploy = () => {
             }
             else {
                 console.log(JSON.stringify(data));
-                resolve(data.Items);
+                resolve(data);
             }
         });
     });

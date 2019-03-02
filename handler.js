@@ -145,11 +145,23 @@ module.exports.updateProfile = async (event) => {
 module.exports.selectEmployee = async () => {
   var result = await models.selectAllEmploy();
   console.log("353--handler---Result :" + JSON.stringify(result));
+  console.log("148----handler----result length : ", result.length);
+
+  //for (i = 0; i <= result.length; i++) {
+    // var obj = {
+    //   "employeeEmail": result.Items.employeeEmail.S,
+    //   "employeeSalary": result.Items.employeeSalary.S,
+    //   "employeeName": result.Items.employeeName.S,
+    //   "employeeProfile": result.Items.employeeProfile.S,
+    //   "employeeId": result.Items.employeeId.S,
+    //   "employeeCity": result.Items.employeeCity.S
+    // }
+ // }
+
   var response = {
     statusCode: 200,
-    body: JSON.stringify({ 'msg': 'success' }),
+    body: JSON.stringify(result),
   };
-  response.body = JSON.stringify(result);
   return response;
 };
 
@@ -180,10 +192,22 @@ module.exports.selectSpecificEmployee = async (event) => {
   };
   var employResult = await models.getSpecificEmployee(requestObject);
   console.log("182----handler----employeresult :", employResult);
-
   var response = {
     statusCode: 200,
-    body: JSON.stringify(employResult)
+    body: JSON.stringify({ 'msg': 'success' })
   }
+  // if (employResult === {} || employResult === " " || employResult === null) {
+  //   response.body = JSON.stringify({ 'msg': 'This is is not present in database' })
+  // } else {
+  var obj = {
+    "employeeEmail": employResult.Item.employeeEmail.S,
+    "employeeSalary": employResult.Item.employeeSalary.S,
+    "employeeName": employResult.Item.employeeName.S,
+    "employeeProfile": employResult.Item.employeeProfile.S,
+    "employeeId": employResult.Item.employeeId.S,
+    "employeeCity": employResult.Item.employeeCity.S
+  }
+  response.body = JSON.stringify(obj);
+  //}
   return response;
 }
