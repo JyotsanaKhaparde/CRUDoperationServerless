@@ -145,22 +145,21 @@ module.exports.updateProfile = async (event) => {
 module.exports.selectEmployee = async () => {
   var result = await models.selectAllEmploy();
   console.log("353--handler---Result :" + JSON.stringify(result));
-  console.log("148----handler----result length : ", result.length);
-
-  //for (i = 0; i <= result.length; i++) {
-    // var obj = {
-    //   "employeeEmail": result.Items.employeeEmail.S,
-    //   "employeeSalary": result.Items.employeeSalary.S,
-    //   "employeeName": result.Items.employeeName.S,
-    //   "employeeProfile": result.Items.employeeProfile.S,
-    //   "employeeId": result.Items.employeeId.S,
-    //   "employeeCity": result.Items.employeeCity.S
-    // }
- // }
-
+  console.log("148----handler----result length : ", result.Items.length);
+  var obj = [];
+  for (var i = 0; i < result.Items.length; i++) {
+    obj[i] = {
+      "employeeEmail": result.Items[i].employeeEmail.S,
+      "employeeSalary": result.Items[i].employeeSalary.S,
+      "employeeName": result.Items[i].employeeName.S,
+      "employeeProfile": result.Items[i].employeeProfile.S,
+      "employeeId": result.Items[i].employeeId.S,
+      "employeeCity": result.Items[i].employeeCity.S
+    }
+  }
   var response = {
     statusCode: 200,
-    body: JSON.stringify(result),
+    body: JSON.stringify(obj),
   };
   return response;
 };
